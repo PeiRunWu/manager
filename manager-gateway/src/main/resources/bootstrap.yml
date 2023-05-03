@@ -1,0 +1,20 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: manager-gateway
+  cloud:
+    nacos:
+      server-addr: 192.168.31.31:8848
+      config:
+        namespace: 06992c13-3ed4-4848-9528-2e69cffc7291
+        file-extension: yml
+        group: DEFAULT_GROUP
+        refresh-enabled: true
+      discovery:
+        namespace: 06992c13-3ed4-4848-9528-2e69cffc7291
+        group: DEFAULT_GROUP
+        register-enabled: true
+
+
