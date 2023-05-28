@@ -1,4 +1,4 @@
-package com.caroLe.manager.system.service;
+package com.caroLe.manager.system.service.system;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;

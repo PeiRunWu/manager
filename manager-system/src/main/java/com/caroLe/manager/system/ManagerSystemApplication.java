@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan("com.caroLe.manager")
-@MapperScan("com.caroLe.manager.repository.dao.system")
+@MapperScan("com.caroLe.manager.repository.dao")
 public class ManagerSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(ManagerSystemApplication.class, args);

@@ -1,4 +1,4 @@
-package com.caroLe.manager.system.service;
+package com.caroLe.manager.system.service.system;
 
 import java.util.List;
 import java.util.Map;

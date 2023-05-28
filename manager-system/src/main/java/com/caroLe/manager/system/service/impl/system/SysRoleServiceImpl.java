@@ -1,4 +1,4 @@
-package com.caroLe.manager.system.service.impl;
+package com.caroLe.manager.system.service.impl.system;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,10 +27,10 @@ import com.caroLe.manager.repository.po.system.SysUserRole;
 import com.caroLe.manager.repository.vo.system.AssignRoleVO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.repository.vo.system.SysRoleVO;
-import com.caroLe.manager.system.service.SysMenuService;
-import com.caroLe.manager.system.service.SysRoleMenuService;
-import com.caroLe.manager.system.service.SysRoleService;
-import com.caroLe.manager.system.service.SysUserRoleService;
+import com.caroLe.manager.system.service.system.SysMenuService;
+import com.caroLe.manager.system.service.system.SysRoleMenuService;
+import com.caroLe.manager.system.service.system.SysRoleService;
+import com.caroLe.manager.system.service.system.SysUserRoleService;
 
 import cn.hutool.core.util.ObjectUtil;
 

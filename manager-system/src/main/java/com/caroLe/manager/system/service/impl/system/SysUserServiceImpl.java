@@ -1,4 +1,4 @@
-package com.caroLe.manager.system.service.impl;
+package com.caroLe.manager.system.service.impl.system;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,9 +33,9 @@ import com.caroLe.manager.repository.po.system.SysUser;
 import com.caroLe.manager.repository.po.system.SysUserRole;
 import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.repository.vo.system.SysUserVO;
-import com.caroLe.manager.system.service.SysRoleService;
-import com.caroLe.manager.system.service.SysUserRoleService;
-import com.caroLe.manager.system.service.SysUserService;
+import com.caroLe.manager.system.service.system.SysRoleService;
+import com.caroLe.manager.system.service.system.SysUserRoleService;
+import com.caroLe.manager.system.service.system.SysUserService;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.digest.BCrypt;

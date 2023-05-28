@@ -1,15 +1,11 @@
 package com.caroLe.manager.repository.po.system;
 
-import java.time.LocalDateTime;
-
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.caroLe.manager.repository.po.BaseBean;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author CaroLe
@@ -17,11 +13,9 @@ import lombok.Data;
  * @Description
  */
 @Data
-public class SysRole {
-
-    @TableId(type = IdType.ASSIGN_ID)
-    @ApiModelProperty("角色id")
-    private String id;
+@TableName("sys_role")
+@EqualsAndHashCode(callSuper = true)
+public class SysRole extends BaseBean {
 
     @ApiModelProperty("角色名称")
     private String roleName;
@@ -31,14 +25,4 @@ public class SysRole {
 
     @ApiModelProperty("描述")
     private String description;
-
-    @ApiModelProperty("创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createTime;
-
-    @ApiModelProperty("更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updateTime;
 }

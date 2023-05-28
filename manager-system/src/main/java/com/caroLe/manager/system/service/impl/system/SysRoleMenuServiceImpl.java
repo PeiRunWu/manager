@@ -1,11 +1,11 @@
-package com.caroLe.manager.system.service.impl;
+package com.caroLe.manager.system.service.impl.system;
 
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.caroLe.manager.repository.dao.system.SysRoleMenuDao;
 import com.caroLe.manager.repository.po.system.SysRoleMenu;
-import com.caroLe.manager.system.service.SysRoleMenuService;
+import com.caroLe.manager.system.service.system.SysRoleMenuService;
 
 /**
  * @author CaroLe
