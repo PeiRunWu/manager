@@ -36,7 +36,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http.oauth2ResourceServer().jwt().jwkSetUri("http://localhost:9000/auth/rsa/publicKey")
+        http.oauth2ResourceServer().jwt().jwkSetUri("http://localhost:9000/manager-auth/rsa/publicKey")
             .jwtAuthenticationConverter(jwtAuthenticationConverter());
 
         http.oauth2ResourceServer().authenticationEntryPoint(new ManagerAuthenticationEntryPoint());
@@ -45,7 +45,7 @@ public class SecurityConfig {
             .anyExchange().access(authorizationManager);
 
         http.exceptionHandling().authenticationEntryPoint(new ManagerAuthenticationEntryPoint())
-            .accessDeniedHandler(new ManagerAccessDeniedHandler()).and();
+            .accessDeniedHandler(new ManagerAccessDeniedHandler());
 
         http.oauth2ResourceServer().authenticationEntryPoint(new ManagerAuthenticationEntryPoint());
         http.csrf().disable().cors();

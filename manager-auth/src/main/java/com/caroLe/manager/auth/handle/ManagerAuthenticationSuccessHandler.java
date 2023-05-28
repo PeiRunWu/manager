@@ -1,5 +1,9 @@
 package com.caroLe.manager.auth.handle;
 
+import static com.caroLe.manager.common.context.BaseContext.*;
+import static com.caroLe.manager.common.context.RequestContext.ACCESS_TOKEN;
+import static com.caroLe.manager.common.context.RequestContext.TOKEN_TYPE;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +30,6 @@ import com.caroLe.manager.auth.domain.SecurityUser;
 import com.caroLe.manager.common.result.Result;
 import com.caroLe.manager.common.type.SuccessType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import static com.caroLe.manager.common.context.BaseContext.*;
-import static com.caroLe.manager.common.context.RequestContext.ACCESS_TOKEN;
-import static com.caroLe.manager.common.context.RequestContext.TOKEN_TYPE;
 
 /**
  * @author CaroLe

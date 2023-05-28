@@ -79,10 +79,10 @@ public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter {
         managerAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler());
         managerAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandler());
         // 配置退出处理器
-        http.logout().logoutUrl("/auth/logout").logoutSuccessHandler(logoutSuccessHandler()).and()
+        http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler()).and()
             .addFilterAt(managerAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         // 配置放行url
-        http.authorizeRequests().antMatchers("/oauth/**", "/auth/login", "/auth/rsa/publicKey").permitAll().anyRequest()
+        http.authorizeRequests().antMatchers("/oauth/**", "/login", "/rsa/publicKey").permitAll().anyRequest()
             .authenticated();
         http.csrf().disable().cors();
     }

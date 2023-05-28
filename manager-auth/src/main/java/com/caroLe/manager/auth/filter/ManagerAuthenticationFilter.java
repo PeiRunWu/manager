@@ -29,7 +29,7 @@ public class ManagerAuthenticationFilter extends AbstractAuthenticationProcessin
     private AuthenticationManager authenticationManager;
 
     public ManagerAuthenticationFilter(AuthenticationManager authenticationManager) {
-        super(new AntPathRequestMatcher("/auth/login", "POST"));
+        super(new AntPathRequestMatcher("/login", "POST"));
         this.authenticationManager = authenticationManager;
     }
 

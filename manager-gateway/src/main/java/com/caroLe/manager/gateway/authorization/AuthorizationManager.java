@@ -1,15 +1,17 @@
 package com.caroLe.manager.gateway.authorization;
 
+import static com.caroLe.manager.common.context.BaseContext.PATTERN_MANAGER;
+import static com.caroLe.manager.common.context.RedisContext.ROLE_PATH_PREFIX;
+import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
+import static com.caroLe.manager.common.context.RequestContext.BEARER;
+
 import java.net.URI;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.hutool.core.collection.CollectionUtil;
-import com.alibaba.fastjson2.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -23,17 +25,15 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.PathMatcher;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.TypeReference;
 import com.caroLe.manager.gateway.config.AllowedPathConfig;
 import com.caroLe.manager.repository.dto.system.UserDTO;
 import com.nimbusds.jose.JWSObject;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
-
-import static com.caroLe.manager.common.context.RedisContext.ROLE_PATH_PREFIX;
-import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
-import static com.caroLe.manager.common.context.RequestContext.BEARER;
 
 /**
  * @author CaroLe
@@ -55,10 +55,12 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
         URI uri = request.getURI();
         PathMatcher pathMatcher = new AntPathMatcher();
+        String patternPath = uri.getPath().replaceAll(PATTERN_MANAGER, "");
 
+        // 如果在白名单之内直接放行
         List<String> allowedPatch = allowedPathConfig.getPaths();
-        for (String path : allowedPatch) {
-            if (pathMatcher.match(path, uri.getPath())) {
+        for (String allow : allowedPatch) {
+            if (pathMatcher.match(allow, patternPath)) {
                 return Mono.just(new AuthorizationDecision(true));
             }
         }
@@ -100,7 +102,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             // 比较当前路径是否在角色里面
             boolean isPattern = false;
             for (String pattern : authorityPath) {
-                if (pathMatcher.match(pattern, uri.getPath())) {
+                if (pathMatcher.match(pattern, patternPath)) {
                     isPattern = true;
                     break;
                 }

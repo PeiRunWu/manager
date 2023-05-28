@@ -9,13 +9,15 @@ public class BaseContext {
     public static final String ZERO = "0";
 
     public static final String EMPTY_STRING = "";
-    
+
     public static final String GRANT_TYPE = "grant_type";
-    
-    public static final  String USERNAME = "username";
-    
+
+    public static final String USERNAME = "username";
+
     public static final String PASSWORD = "password";
-    
+
     public static final String SCOPE = "scope";
+
+    public static final String PATTERN_MANAGER = "^/manager-[a-zA-Z]+";
 
 }
