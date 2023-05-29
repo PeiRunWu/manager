@@ -1,17 +1,32 @@
 package com.caroLe.manager.system.service.impl.blog;
 
+import static com.caroLe.manager.common.enums.TagEnum.CHILDREN_TAG;
+import static com.caroLe.manager.common.enums.TagEnum.PARENT_TAG;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.caroLe.manager.common.context.BaseContext;
+import com.caroLe.manager.common.exception.DataException;
 import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.common.type.ErrorType;
 import com.caroLe.manager.common.type.SuccessType;
 import com.caroLe.manager.repository.dao.blog.BlogTagDao;
+import com.caroLe.manager.repository.dto.blog.BlogTagDTO;
 import com.caroLe.manager.repository.po.blog.BlogTag;
+import com.caroLe.manager.repository.vo.blog.BlogTagVO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.system.service.blog.BlogTagService;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 
 /**
@@ -36,5 +51,64 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
             commonVO.getSearchObj());
         Page<BlogTag> page = baseMapper.selectPage(blogTagPage, blogTagQueryWrapper);
         return Result.success(page, SuccessType.SUCCESS);
+    }
+
+    /**
+     * 保存或更新标签信息
+     * 
+     * @param blogTagVO
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = DataException.class)
+    public Result<String> saveOrUpdateTag(BlogTagVO blogTagVO) {
+        BlogTag blogTag = new BlogTag();
+        BeanUtil.copyProperties(blogTagVO, blogTag);
+        if (Objects.equals(blogTagVO.getParentId(), BaseContext.ZERO)) {
+            if (ObjectUtil.notEqual(blogTagVO.getType(), PARENT_TAG.getCode())) {
+                throw new DataException(ErrorType.PARENT_TAG_NOT_SELECT);
+            }
+        } else {
+            if (ObjectUtil.notEqual(blogTagVO.getType(), CHILDREN_TAG.getCode())) {
+                throw new DataException(ErrorType.CHILDREN_TAG_NOT_SELECT);
+            }
+        }
+        this.saveOrUpdate(blogTag);
+        return Result.success(SuccessType.SUCCESS);
+    }
+
+    /**
+     * 获取所有父标签项
+     *
+     * @return
+     */
+    @Override
+    public Result<List<BlogTagDTO>> getParentTagItems() {
+        List<BlogTag> blogTags =
+            baseMapper.selectList(new LambdaQueryWrapper<BlogTag>().eq(BlogTag::getType, PARENT_TAG.getCode()));
+        List<BlogTagDTO> blogTagDTOList = blogTags.stream().map(blogTag -> {
+            BlogTagDTO blogTagDTO = new BlogTagDTO();
+            if (ObjectUtil.isNotEmpty(blogTag)) {
+                BeanUtil.copyProperties(blogTag, blogTagDTO);
+            }
+            return blogTagDTO;
+        }).collect(Collectors.toList());
+        return Result.success(blogTagDTOList, SuccessType.SUCCESS);
+    }
+
+    /**
+     * 通过Id删除标签项
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Result<String> removeBlogTagById(String id) {
+        List<BlogTag> blogTags = baseMapper.selectList(new LambdaQueryWrapper<BlogTag>().eq(BlogTag::getParentId, id));
+        if (CollectionUtil.isNotEmpty(blogTags)) {
+            throw new DataException(ErrorType.NODE_ERROR);
+        }
+        baseMapper.deleteById(id);
+        return Result.success(SuccessType.SUCCESS);
     }
 }

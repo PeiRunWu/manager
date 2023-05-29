@@ -62,6 +62,14 @@ public class Result<T> {
     }
 
     /**
+     * 方便静态调用(成功)
+     */
+
+    public static <T> Result<T> success(StatusType statusType) {
+        return new Result<T>(null, statusType.getCode(), statusType.getMessage());
+    }
+
+    /**
      * 方便静态调用(失败)
      */
     public static <T> Result<T> failed(String message, Integer code) {

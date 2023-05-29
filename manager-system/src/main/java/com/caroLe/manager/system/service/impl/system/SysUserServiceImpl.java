@@ -144,7 +144,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         SysUser sysUser = baseMapper.selectById(id);
         sysUser.setStatus(status);
         baseMapper.updateById(sysUser);
-        return Result.success(null, SuccessType.SUCCESS);
+        return Result.success( SuccessType.SUCCESS);
     }
 
     /**
@@ -187,6 +187,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         sysUserRole.setRoleId(sysRole.getId());
         sysUserRole.setUserId(sysUser.getId());
         sysUserRoleService.save(sysUserRole);
-        return Result.success(null, SuccessType.SUCCESS);
+        return Result.success( SuccessType.SUCCESS);
     }
 }

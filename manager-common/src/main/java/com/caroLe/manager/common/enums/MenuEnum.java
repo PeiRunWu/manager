@@ -10,10 +10,21 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum MenuEnum {
-    DIRECTORY(0,"目录"), MENU(1,"菜单"), BUTTON(2,"按钮");
+    /**
+     * 目录
+     */
+    DIRECTORY(0, "目录"),
+    /**
+     * 菜单
+     */
+    MENU(1, "菜单"),
+    /**
+     * 按钮
+     */
+    BUTTON(2, "按钮");
 
     private final int code;
-    
+
     private final String desc;
 
     public String getDesc() {

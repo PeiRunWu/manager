@@ -27,8 +27,6 @@ import com.caroLe.manager.repository.po.system.SysUserRole;
 import com.caroLe.manager.repository.vo.system.AssignRoleVO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.repository.vo.system.SysRoleVO;
-import com.caroLe.manager.system.service.system.SysMenuService;
-import com.caroLe.manager.system.service.system.SysRoleMenuService;
 import com.caroLe.manager.system.service.system.SysRoleService;
 import com.caroLe.manager.system.service.system.SysUserRoleService;
 
@@ -44,12 +42,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
 
     @Autowired
     private SysUserRoleService sysUserRoleService;
-
-    @Autowired
-    private SysRoleMenuService sysRoleMenuService;
-
-    @Autowired
-    private SysMenuService sysMenuService;
 
     /**
      * 获取用户角色名称
@@ -103,7 +95,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
         if (!saveOrUpdate) {
             throw new DataException(ErrorType.UPDATE_DATE);
         }
-        return Result.success(null, SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 
     /**
@@ -174,6 +166,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
             sysUserRole.setUserId(assignVO.getUserId());
             sysUserRoleService.save(sysUserRole);
         }
-        return Result.success(null, SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 }

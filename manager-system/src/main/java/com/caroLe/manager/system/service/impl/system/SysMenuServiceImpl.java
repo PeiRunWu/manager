@@ -102,7 +102,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         }
         sysMenu.setHidden(hidden);
         baseMapper.updateById(sysMenu);
-        return Result.success(null, SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 
     /**
@@ -213,7 +213,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
             sysRoleMenu.setMenuId(menuId);
             sysRoleMenu.setRoleId(roleId);
             sysRoleMenuService.save(sysRoleMenu);
-            pathList.add(sysMenu.getPath());
+            if (StrUtil.isNotEmpty(sysMenu.getPath())) {
+                pathList.add(sysMenu.getPath());
+            }
         }
         // redis 直接保存角色对应的path
         stringRedisTemplate.opsForValue().set(ROLE_PATH_PREFIX + sysRole.getRoleCode(), JSON.toJSONString(pathList));
@@ -231,7 +233,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
                 .getRequest();
         String authorization = request.getHeader(AUTHORIZATION);
         if (ObjectUtil.isEmpty(authorization)) {
-            return Result.success(null, SuccessType.SUCCESS);
+            return Result.success(SuccessType.SUCCESS);
         }
         String token = authorization.replace(BEARER, EMPTY_STRING).trim();
         String userId = stringRedisTemplate.opsForValue().get(token);
@@ -245,7 +247,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         List<SysRoleMenu> sysRoleMenuList =
             sysRoleMenuService.list(new LambdaQueryWrapper<SysRoleMenu>().in(SysRoleMenu::getRoleId, roleIdList));
         if (CollectionUtils.isEmpty(sysRoleMenuList)) {
-            return Result.success(null, SuccessType.SUCCESS);
+            return Result.success(SuccessType.SUCCESS);
         }
         // 获取当前用户menu
         List<String> menuIdList = sysRoleMenuList.stream().map(SysRoleMenu::getMenuId).collect(Collectors.toList());

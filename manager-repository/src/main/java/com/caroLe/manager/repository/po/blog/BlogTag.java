@@ -23,7 +23,7 @@ public class BlogTag extends BaseBean {
     @ApiModelProperty("标签名称")
     private String tagName;
 
-    @ApiModelProperty("类型(0:分类,1:标签)")
-    private String type;
+    @ApiModelProperty("类型(0:父标签,1:子标签)")
+    private Integer type;
 
 }

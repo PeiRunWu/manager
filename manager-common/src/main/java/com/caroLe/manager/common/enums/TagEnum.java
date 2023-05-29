@@ -4,31 +4,29 @@ import lombok.AllArgsConstructor;
 
 /**
  * @author CaroLe
- * @Date 2023/4/25 22:25
+ * @Date 2023/5/28 21:35
  * @Description
  */
-
 @AllArgsConstructor
-public enum LoginEnum {
-
+public enum TagEnum {
     /**
-     * 激活
+     * 父标签
      */
-    ACTIVATE(1, "激活"),
+    PARENT_TAG(0, "父标签"),
     /**
-     * 冻结
+     * 子标签
      */
-    FREEZE(0, "冻结");
+    CHILDREN_TAG(1, "子标签");
 
     private final Integer code;
 
     private final String desc;
 
-    public String getDesc() {
-        return desc;
-    }
-
     public Integer getCode() {
         return code;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }
