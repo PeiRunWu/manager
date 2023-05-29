@@ -22,7 +22,7 @@ import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
  * @Description
  */
 @Service
-public class SecurityAuthService implements UserDetailsService {
+public class SecurityAuthServiceImpl implements UserDetailsService {
 
     @Autowired
     private ManagerSystemService managerSystemService;

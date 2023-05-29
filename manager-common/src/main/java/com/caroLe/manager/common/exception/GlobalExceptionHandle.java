@@ -18,12 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandle {
 
     @ExceptionHandler(BaseException.class)
-    public Result<String> BaseExceptionHandle(BaseException exception) {
+    public Result<String> baseExceptionHandle(BaseException exception) {
         return Result.failed(exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
-    public Result<String> ExceptionHandle(Exception exception) {
+    public Result<String> exceptionHandle(Exception exception) {
         exception.printStackTrace();
         return Result.failed(ErrorType.SERVICE_ERROR);
     }

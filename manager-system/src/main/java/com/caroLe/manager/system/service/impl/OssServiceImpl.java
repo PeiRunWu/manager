@@ -36,13 +36,13 @@ public class OssServiceImpl implements OssService {
     /**
      * 上传文件
      *
-     * @param file
-     * @return
+     * @param file 文件信息
+     * @return 上传地址
      */
     @Override
     public String upload(MultipartFile file) {
         String fileName = "manager-admin/" + new DateTime().toString("yyyy-MM-dd") + "/"
-                + UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
+            + UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
         OSS ossClient = null;
         try {
             InputStream inputStream = file.getInputStream();
@@ -58,4 +58,3 @@ public class OssServiceImpl implements OssService {
         return "https://" + bucketName + "." + endpoint + "/" + fileName;
     }
 }
-

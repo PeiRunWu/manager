@@ -19,57 +19,56 @@ public interface SysUserService extends IService<SysUser> {
     /**
      * 用户注册
      * 
-     * @param sysUserVO
-     * @return
+     * @param sysUserVO 用户信息
+     * @return 用户注册
      */
     Result<String> registerUser(SysUserVO sysUserVO);
 
     /**
      * 获取当前登入用户信息
      *
-     * @return
+     * @return 获取当前登入用户信息
      */
     Result<SysUserDTO> getUserInfo();
 
     /**
      * 分页查询
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 分页查询
      */
     Result<Page<SysUserDTO>> listPage(CommonVO commonVO);
 
     /**
      * 删除用户
      *
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return Result
      */
     Result<String> deleteSysUserById(String id);
 
     /**
      * 更新用户信息
      *
-     * @param sysUserVO
-     * @return
+     * @param sysUserVO 用户信息
+     * @return Result
      */
     Result<String> updateSysUser(SysUserVO sysUserVO);
-
 
     /**
      * 更新状态
      *
-     * @param id
-     * @param status
-     * @return
+     * @param id 用户Id
+     * @param status 状态
+     * @return Result
      */
     Result<String> updateStatus(String id, Integer status);
 
     /**
      * 根据用户名获取用户信息
      * 
-     * @param username
-     * @return
+     * @param username 用户名
+     * @return 获取用户信息
      */
     Result<SysMenuSecurityDTO> loadByUsername(String username);
 }

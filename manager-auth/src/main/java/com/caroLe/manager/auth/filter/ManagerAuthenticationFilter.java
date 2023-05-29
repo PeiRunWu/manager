@@ -26,7 +26,7 @@ import cn.hutool.core.util.StrUtil;
  */
 public class ManagerAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public ManagerAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(new AntPathRequestMatcher("/login", "POST"));

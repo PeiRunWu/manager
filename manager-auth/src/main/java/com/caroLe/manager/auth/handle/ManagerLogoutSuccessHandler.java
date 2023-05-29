@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class ManagerLogoutSuccessHandler implements LogoutSuccessHandler {
 
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     public ManagerLogoutSuccessHandler(StringRedisTemplate stringRedisTemplate) {

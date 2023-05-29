@@ -22,7 +22,7 @@ import com.caroLe.manager.auth.filter.ManagerAuthenticationFilter;
 import com.caroLe.manager.auth.handle.ManagerAuthenticationFailureHandler;
 import com.caroLe.manager.auth.handle.ManagerAuthenticationSuccessHandler;
 import com.caroLe.manager.auth.handle.ManagerLogoutSuccessHandler;
-import com.caroLe.manager.auth.serivce.SecurityAuthService;
+import com.caroLe.manager.auth.serivce.SecurityAuthServiceImpl;
 
 /**
  * @author CaroLe
@@ -34,7 +34,7 @@ import com.caroLe.manager.auth.serivce.SecurityAuthService;
 public class ManagerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SecurityAuthService securityAuthService;
+    private SecurityAuthServiceImpl securityAuthService;
 
     @Autowired
     private ClientDetailsService clientDetailsService;

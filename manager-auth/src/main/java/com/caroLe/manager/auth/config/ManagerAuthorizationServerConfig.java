@@ -25,7 +25,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
-import com.caroLe.manager.auth.serivce.SecurityAuthService;
+import com.caroLe.manager.auth.serivce.SecurityAuthServiceImpl;
 
 /**
  * @author CaroLe
@@ -43,7 +43,7 @@ public class ManagerAuthorizationServerConfig extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private SecurityAuthService securityAuthService;
+    private SecurityAuthServiceImpl securityAuthService;
 
     @Bean
     public TokenStore tokenStore() {

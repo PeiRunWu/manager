@@ -75,8 +75,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 查询菜单
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 分页信息
      */
     @Override
     public Page<SysMenu> getPageList(CommonVO commonVO) {
@@ -90,12 +90,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 修改菜单是否显示
      *
-     * @param id
-     * @param hidden
-     * @return
+     * @param id 菜单Id
+     * @param hidden 是否显示
+     * @return Result
      */
     @Override
-    public Result<Page<SysMenu>> updateHidden(String id, Integer hidden) {
+    public Result<String> updateHidden(String id, Integer hidden) {
         SysMenu sysMenu = baseMapper.selectById(id);
         if (ObjectUtil.isEmpty(sysMenu)) {
             throw new DataException(ErrorType.UPDATE_DATE);
@@ -108,7 +108,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 获取所有的菜单
      *
-     * @return
+     * @return 获取所有的菜单
      */
     @Override
     public Result<List<SysMenu>> getAllMenuItems() {
@@ -120,7 +120,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 获取所有目录
      *
-     * @return
+     * @return 获取所有目录
      */
     @Override
     public Result<List<SysMenu>> getAllTableItems() {
@@ -132,7 +132,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 删除菜单
      *
-     * @param id
+     * @param id 菜单Id
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -155,8 +155,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 获取所有资源
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 获取所有资源
      */
     @Override
     public Result<Page<SysMenu>> getResourcePageList(CommonVO commonVO) {
@@ -174,8 +174,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 根据角色获取菜单
      *
-     * @param roleId
-     * @return
+     * @param roleId 角色Id
+     * @return 菜单信息
      */
     @Override
     public AssignAuthMenuDTO findSysMenuByRoleId(String roleId) {
@@ -193,8 +193,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 更新菜单或资源
      *
-     * @param sysMenu
-     * @return
+     * @param sysMenu 菜单信息
+     * @return 更新菜单或资源
      */
     @Override
     public Result<String> updateMenuById(SysMenu sysMenu) {
@@ -213,7 +213,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 分配权限
      *
-     * @param assignMenuVo
+     * @param assignMenuVo 权限VO
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -244,7 +244,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     /**
      * 获取当前用户菜单权限
      *
-     * @return
+     * @return 获取当前用户菜单权限
      */
     @Override
     public Result<List<MenuItemDTO>> getUserMenu() {
@@ -272,13 +272,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         // 获取当前用户menu
         List<String> menuIdList = sysRoleMenuList.stream().map(SysRoleMenu::getMenuId).collect(Collectors.toList());
         List<SysMenu> allSysMenuList = baseMapper.selectList(new LambdaQueryWrapper<SysMenu>());
-        Iterator<SysMenu> iterator = allSysMenuList.iterator();
-        while (iterator.hasNext()) {
-            SysMenu sysMenu = iterator.next();
-            if (!menuIdList.contains(sysMenu.getId())) {
-                iterator.remove();
-            }
-        }
+        allSysMenuList.removeIf(sysMenu -> !menuIdList.contains(sysMenu.getId()));
         return Result.success(listMenuItem(allSysMenuList), SuccessType.SUCCESS);
     }
 

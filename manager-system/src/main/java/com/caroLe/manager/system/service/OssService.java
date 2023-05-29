@@ -12,8 +12,8 @@ public interface OssService {
     /**
      * 上传文件
      *
-     * @param file
-     * @return
+     * @param file 文件信息
+     * @return 上传地址
      */
     String upload(MultipartFile file);
 }

@@ -27,7 +27,6 @@ import reactor.core.publisher.Mono;
 public class ManagerAuthenticationEntryPoint implements ServerAuthenticationEntryPoint {
     @Override
     public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException exception) {
-        log.info("gateway: " + exception.getMessage());
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.OK);
         response.getHeaders().set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);

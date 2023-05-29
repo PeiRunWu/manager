@@ -46,8 +46,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     /**
      * 获取用户角色名称
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 获取用户角色名称
      */
     @Override
     public Result<Page<SysRole>> getPageList(CommonVO commonVO) {
@@ -62,8 +62,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     /**
      * 删除用户Id
      *
-     * @param idList
-     * @return
+     * @param idList id
+     * @return Result
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -78,8 +78,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     /**
      * 保存或修改角色
      *
-     * @param sysRoleVO
-     * @return
+     * @param sysRoleVO 角色信息
+     * @return Result
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -101,7 +101,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     /**
      * 获取所有角色
      *
-     * @return
+     * @return 获取所有角色
      */
     @Override
     public Result<List<SysRoleDTO>> getAllRoleItem() {
@@ -123,8 +123,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     /**
      * 查询当前用户角色
      *
-     * @param userId
-     * @return
+     * @param userId 用户Id
+     * @return 查询当前用户角色
      */
     @Override
     public Result<Map<String, Object>> toAssign(String userId) {
@@ -148,8 +148,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     /**
      * 用户分配权限
      *
-     * @param assignVO
-     * @return
+     * @param assignVO assignVO信息
+     * @return Result
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)

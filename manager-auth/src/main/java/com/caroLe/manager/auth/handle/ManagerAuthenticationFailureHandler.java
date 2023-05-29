@@ -28,7 +28,7 @@ public class ManagerAuthenticationFailureHandler implements AuthenticationFailur
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
         AuthenticationException exception) throws IOException, ServletException {
         log.error("ManagerAuthenticationFailureHandler:" + exception.getMessage());
-        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(response.getWriter(), Result.failed(ErrorType.USER_NO_ACCESS));
     }

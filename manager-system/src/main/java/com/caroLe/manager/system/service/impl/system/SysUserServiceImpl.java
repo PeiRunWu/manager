@@ -60,7 +60,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     /**
      * 获取当前登入用户信息
      *
-     * @return
+     * @return 获取当前登入用户信息
      */
     @Override
     public Result<SysUserDTO> getUserInfo() {
@@ -82,8 +82,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     /**
      * 分页查询
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 分页查询
      */
     @Override
     public Result<Page<SysUserDTO>> listPage(CommonVO commonVO) {
@@ -99,8 +99,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     /**
      * 删除用户
      *
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return Result
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -116,8 +116,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     /**
      * 更新用户信息
      *
-     * @param sysUserVO
-     * @return
+     * @param sysUserVO 用户信息
+     * @return Result
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -134,9 +134,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     /**
      * 更新状态
      *
-     * @param id
-     * @param status
-     * @return
+     * @param id 用户Id
+     * @param status 状态
+     * @return Result
      */
     @Override
     @Transactional(rollbackFor = BaseException.class)
@@ -144,14 +144,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         SysUser sysUser = baseMapper.selectById(id);
         sysUser.setStatus(status);
         baseMapper.updateById(sysUser);
-        return Result.success( SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 
     /**
      * 根据用户名获取用户信息
      *
-     * @param username
-     * @return
+     * @param username 用户名
+     * @return 获取用户信息
      */
     @Override
     public Result<SysMenuSecurityDTO> loadByUsername(String username) {
@@ -165,9 +165,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     /**
      * 用户注册
      *
-     * @param sysUserVO
+     * @param sysUserVO 用户信息
+     * @return 用户注册
      */
-
     @Override
     @Transactional(rollbackFor = BaseException.class)
     public Result<String> registerUser(SysUserVO sysUserVO) {
@@ -187,6 +187,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         sysUserRole.setRoleId(sysRole.getId());
         sysUserRole.setUserId(sysUser.getId());
         sysUserRoleService.save(sysUserRole);
-        return Result.success( SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 }

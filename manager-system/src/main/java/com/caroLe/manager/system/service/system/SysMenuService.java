@@ -20,76 +20,76 @@ public interface SysMenuService extends IService<SysMenu> {
     /**
      * 查询菜单
      * 
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 分页信息
      */
     Page<SysMenu> getPageList(CommonVO commonVO);
 
     /**
      * 删除菜单
      *
-     * @param id
+     * @param id 菜单Id
      */
     void removeMenu(String id);
 
     /**
      * 根据角色获取菜单
      *
-     * @param roleId
-     * @return
+     * @param roleId 角色Id
+     * @return 菜单信息
      */
     AssignAuthMenuDTO findSysMenuByRoleId(String roleId);
 
     /**
      * 分配权限
      *
-     * @param assignMenuVo
+     * @param assignMenuVo 权限VO
      */
     void doAssign(AssignMenuVO assignMenuVo);
 
     /**
      * 获取当前用户菜单权限
      *
-     * @return
+     * @return 获取当前用户菜单权限
      */
     Result<List<MenuItemDTO>> getUserMenu();
 
     /**
      * 修改菜单是否显示
      * 
-     * @param id
-     * @param hidden
-     * @return
+     * @param id 菜单Id
+     * @param hidden 是否显示
+     * @return Result
      */
-    Result<Page<SysMenu>> updateHidden(String id, Integer hidden);
+    Result<String> updateHidden(String id, Integer hidden);
 
     /**
      * 获取所有的菜单
      * 
-     * @return
+     * @return 获取所有的菜单
      */
     Result<List<SysMenu>> getAllMenuItems();
 
     /**
      * 获取所有资源
      * 
-     * @param commonVO
-     * @return
+     * @param commonVO 搜索条件
+     * @return 获取所有资源
      */
     Result<Page<SysMenu>> getResourcePageList(CommonVO commonVO);
 
     /**
      * 获取所有目录
      * 
-     * @return
+     * @return 获取所有目录
      */
     Result<List<SysMenu>> getAllTableItems();
 
     /**
      * 更新菜单或资源
      * 
-     * @param sysMenu
-     * @return
+     * @param sysMenu 菜单信息
+     * @return 更新菜单或资源
      */
     Result<String> updateMenuById(SysMenu sysMenu);
 }

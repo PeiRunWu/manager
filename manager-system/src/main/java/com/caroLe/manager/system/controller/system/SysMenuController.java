@@ -40,7 +40,7 @@ public class SysMenuController {
 
     @GetMapping("/updateHidden/{id}/{hidden}")
     @ApiOperation(value = "修改菜单是否显示")
-    public Result<Page<SysMenu>> updateHidden(@PathVariable("id") String id, @PathVariable("hidden") Integer hidden) {
+    public Result<String> updateHidden(@PathVariable("id") String id, @PathVariable("hidden") Integer hidden) {
         return sysMenuService.updateHidden(id, hidden);
     }
 

@@ -3,6 +3,7 @@ package com.caroLe.manager.common.exception;
 import com.caroLe.manager.common.type.StatusType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author CaroLe
@@ -10,6 +11,7 @@ import lombok.Data;
  * @Description
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class BaseException extends RuntimeException {
 
     private Integer code;

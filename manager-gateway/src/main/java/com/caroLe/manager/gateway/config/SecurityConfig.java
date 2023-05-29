@@ -1,5 +1,7 @@
 package com.caroLe.manager.gateway.config;
 
+import static com.caroLe.manager.common.context.RequestContext.JWT_URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,8 +38,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http.oauth2ResourceServer().jwt().jwkSetUri("http://localhost:9000/manager-auth/rsa/publicKey")
-            .jwtAuthenticationConverter(jwtAuthenticationConverter());
+        http.oauth2ResourceServer().jwt().jwkSetUri(JWT_URL).jwtAuthenticationConverter(jwtAuthenticationConverter());
 
         http.oauth2ResourceServer().authenticationEntryPoint(new ManagerAuthenticationEntryPoint());
 

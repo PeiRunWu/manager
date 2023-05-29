@@ -29,7 +29,6 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     /**
      * 插入时的填充策略
      *
-     * @param metaObject
      */
     @Override
     public void insertFill(MetaObject metaObject) {
@@ -39,8 +38,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
 
     /**
      * 更新时的填充策略
-     *
-     * @param metaObject
+     * 
      */
     @Override
     public void updateFill(MetaObject metaObject) {

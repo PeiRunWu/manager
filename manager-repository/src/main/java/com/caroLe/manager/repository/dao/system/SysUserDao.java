@@ -21,16 +21,16 @@ public interface SysUserDao extends BaseMapper<SysUser> {
     /**
      * 分页查询
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 分页查询条件
+     * @return 分页信息
      */
     List<SysUserDTO> listPage(@Param("commonVO") CommonVO commonVO);
 
     /**
      * 根据用户名获取用户信息
      *
-     * @param username
-     * @return
+     * @param username 用户名
+     * @return 用户信息
      */
     SysMenuSecurityDTO loadByUsername(@Param("username") String username);
 }

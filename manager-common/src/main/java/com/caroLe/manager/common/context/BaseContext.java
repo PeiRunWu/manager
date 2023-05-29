@@ -19,5 +19,4 @@ public class BaseContext {
     public static final String SCOPE = "scope";
 
     public static final String PATTERN_MANAGER = "^/manager-[a-zA-Z]+";
-
 }
