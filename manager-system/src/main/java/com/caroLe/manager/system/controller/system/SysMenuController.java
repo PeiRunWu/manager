@@ -66,21 +66,20 @@ public class SysMenuController {
     @ApiOperation(value = "保存菜单")
     public Result<String> saveMenu(@RequestBody SysMenu sysMenu) {
         sysMenuService.save(sysMenu);
-        return Result.success( SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 
     @PutMapping("/updateMenuById")
-    @ApiOperation(value = "更新菜单")
+    @ApiOperation(value = "更新菜单或资源")
     public Result<String> updateMenuById(@RequestBody SysMenu sysMenu) {
-        sysMenuService.updateById(sysMenu);
-        return Result.success( SuccessType.SUCCESS);
+        return sysMenuService.updateMenuById(sysMenu);
     }
 
     @DeleteMapping("/remove/{id}")
     @ApiOperation(value = "删除菜单")
     public Result<String> removeSysMenu(@PathVariable String id) {
         sysMenuService.removeMenu(id);
-        return Result.success( SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 
     @GetMapping("/toAssign/{roleId}")
@@ -94,7 +93,7 @@ public class SysMenuController {
     @ApiOperation(value = "分配权限")
     public Result<String> doAssign(@RequestBody AssignMenuVO assignMenuVo) {
         sysMenuService.doAssign(assignMenuVo);
-        return Result.success( SuccessType.SUCCESS);
+        return Result.success(SuccessType.SUCCESS);
     }
 
     @GetMapping("/getUserMenu")

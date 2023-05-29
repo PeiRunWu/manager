@@ -72,6 +72,7 @@ public interface SysMenuService extends IService<SysMenu> {
 
     /**
      * 获取所有资源
+     * 
      * @param commonVO
      * @return
      */
@@ -79,7 +80,16 @@ public interface SysMenuService extends IService<SysMenu> {
 
     /**
      * 获取所有目录
+     * 
      * @return
      */
     Result<List<SysMenu>> getAllTableItems();
+
+    /**
+     * 更新菜单或资源
+     * 
+     * @param sysMenu
+     * @return
+     */
+    Result<String> updateMenuById(SysMenu sysMenu);
 }

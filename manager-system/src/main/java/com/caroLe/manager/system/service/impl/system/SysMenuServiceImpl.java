@@ -191,6 +191,26 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     }
 
     /**
+     * 更新菜单或资源
+     *
+     * @param sysMenu
+     * @return
+     */
+    @Override
+    public Result<String> updateMenuById(SysMenu sysMenu) {
+        if (MenuEnum.BUTTON.getCode() == sysMenu.getType()) {
+            // 先查出当前资源
+            SysMenu menu = baseMapper.selectById(sysMenu.getId());
+            // 比较资源路径
+            if (!StrUtil.equals(sysMenu.getPath(), menu.getPath())) {
+                throw new DataException(ErrorType.BINDING_PERMISSIONS);
+            }
+        }
+        baseMapper.updateById(sysMenu);
+        return Result.success(SuccessType.SUCCESS);
+    }
+
+    /**
      * 分配权限
      *
      * @param assignMenuVo

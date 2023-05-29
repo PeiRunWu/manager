@@ -38,6 +38,8 @@ public class ErrorType extends StatusType {
 
     public static final ErrorType CHILDREN_TAG_NOT_SELECT = new ErrorType(221, "子标签必须选择子标签类型");
 
+    public static final ErrorType BINDING_PERMISSIONS = new ErrorType(222, "该资源路径已绑定权限,不可以修改");
+
     public ErrorType(Integer code, String message) {
         super(code, message);
     }
