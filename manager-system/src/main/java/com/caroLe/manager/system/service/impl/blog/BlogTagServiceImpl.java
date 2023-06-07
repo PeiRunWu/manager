@@ -20,6 +20,7 @@ import com.caroLe.manager.common.type.ErrorType;
 import com.caroLe.manager.common.type.SuccessType;
 import com.caroLe.manager.repository.dao.blog.BlogTagDao;
 import com.caroLe.manager.repository.dto.blog.BlogTagDTO;
+import com.caroLe.manager.repository.dto.blog.BlogTagTreeNodeDTO;
 import com.caroLe.manager.repository.po.blog.BlogTag;
 import com.caroLe.manager.repository.vo.blog.BlogTagVO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
@@ -40,8 +41,8 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
     /**
      * 博客标签分页查询
      *
-     * @param commonVO
-     * @return
+     * @param commonVO 标签分页信息
+     * @return 博客标签分页查询
      */
     @Override
     public Result<Page<BlogTag>> getPageList(CommonVO commonVO) {
@@ -55,9 +56,9 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
 
     /**
      * 保存或更新标签信息
-     * 
-     * @param blogTagVO
-     * @return
+     *
+     * @param blogTagVO 标签信息
+     * @return 成功信息
      */
     @Override
     @Transactional(rollbackFor = DataException.class)
@@ -80,7 +81,7 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
     /**
      * 获取所有父标签项
      *
-     * @return
+     * @return 获取所有父标签项
      */
     @Override
     public Result<List<BlogTagDTO>> getParentTagItems() {
@@ -99,8 +100,8 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
     /**
      * 通过Id删除标签项
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 标签项
      */
     @Override
     public Result<String> removeBlogTagById(String id) {
@@ -111,4 +112,37 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
         baseMapper.deleteById(id);
         return Result.success(SuccessType.SUCCESS);
     }
+
+    /**
+     * 获取标签列表以树的形式
+     *
+     * @return tree
+     */
+    @Override
+    public Result<List<BlogTagTreeNodeDTO>> getBlogTagTreeNode() {
+        List<BlogTag> blogTags =
+            baseMapper.selectList(new LambdaQueryWrapper<BlogTag>().eq(BlogTag::getParentId, BaseContext.ZERO));
+        List<BlogTagTreeNodeDTO> blogTagTreeNodeDTOList = blogTags.stream().map(blogTag -> {
+            BlogTagTreeNodeDTO blogTagTreeNodeDTO = new BlogTagTreeNodeDTO();
+            blogTagTreeNodeDTO.setValue(blogTag.getId());
+            blogTagTreeNodeDTO.setTitle(blogTag.getTagName());
+            return blogTagTreeNodeDTO;
+        }).collect(Collectors.toList());
+        blogTagTreeNodeDTOList.forEach(blogTagTreeNodeDTO -> {
+            String value = blogTagTreeNodeDTO.getValue();
+            List<BlogTag> blogTagList =
+                baseMapper.selectList(new LambdaQueryWrapper<BlogTag>().eq(BlogTag::getParentId, value));
+            if (CollectionUtil.isNotEmpty(blogTagList)) {
+                List<BlogTagTreeNodeDTO> childrenTree = blogTagList.stream().map(blogTag -> {
+                    BlogTagTreeNodeDTO blogTagTree = new BlogTagTreeNodeDTO();
+                    blogTagTree.setValue(blogTag.getId());
+                    blogTagTree.setTitle(blogTag.getTagName());
+                    return blogTagTree;
+                }).collect(Collectors.toList());
+                blogTagTreeNodeDTO.setChildren(childrenTree);
+            }
+        });
+        return Result.success(blogTagTreeNodeDTOList, SuccessType.SUCCESS);
+    }
+
 }

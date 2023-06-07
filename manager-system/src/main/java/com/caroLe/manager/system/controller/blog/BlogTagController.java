@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.caroLe.manager.common.result.Result;
 import com.caroLe.manager.repository.dto.blog.BlogTagDTO;
+import com.caroLe.manager.repository.dto.blog.BlogTagTreeNodeDTO;
 import com.caroLe.manager.repository.po.blog.BlogTag;
 import com.caroLe.manager.repository.vo.blog.BlogTagVO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
@@ -52,6 +53,12 @@ public class BlogTagController {
     @ApiOperation(value = "通过Id删除标签项")
     public Result<String> removeBlogTagById(@PathVariable("id") String id) {
         return blogTagService.removeBlogTagById(id);
+    }
+
+    @GetMapping("/getBlogTagTreeNode")
+    @ApiOperation(value = "获取标签列表以树的形式")
+    public Result<List<BlogTagTreeNodeDTO>> getBlogTagTreeNode() {
+        return blogTagService.getBlogTagTreeNode();
     }
 
 }

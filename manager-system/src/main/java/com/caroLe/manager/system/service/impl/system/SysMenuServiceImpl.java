@@ -7,7 +7,6 @@ import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
 import static com.caroLe.manager.common.context.RequestContext.BEARER;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
