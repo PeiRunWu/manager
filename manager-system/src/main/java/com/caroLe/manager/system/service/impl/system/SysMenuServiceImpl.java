@@ -198,10 +198,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     @Override
     public Result<String> updateMenuById(SysMenu sysMenu) {
         if (MenuEnum.BUTTON.getCode() == sysMenu.getType()) {
-            // 先查出当前资源
-            SysMenu menu = baseMapper.selectById(sysMenu.getId());
-            // 比较资源路径
-            if (!StrUtil.equals(sysMenu.getPath(), menu.getPath())) {
+            List<SysRoleMenu> sysRoleMenuList = sysRoleMenuService
+                .list(new LambdaQueryWrapper<SysRoleMenu>().eq(SysRoleMenu::getMenuId, sysMenu.getPath()));
+            if (CollectionUtils.isNotEmpty(sysRoleMenuList)) {
                 throw new DataException(ErrorType.BINDING_PERMISSIONS);
             }
         }
@@ -295,18 +294,20 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     }
 
     private List<MenuItemDTO> getChildrenMenuItem(MenuItemDTO root, List<SysMenu> allMenu) {
-        return allMenu.stream().filter(menu -> menu.getParentId().equals(root.getId())).map(sysMenu -> {
-            MenuItemDTO menuItemDTO = new MenuItemDTO();
-            menuItemDTO.setPath(sysMenu.getPath());
-            menuItemDTO.setSortValue(sysMenu.getSortValue());
-            if (ObjectUtil.isNotEmpty(sysMenu.getHidden())) {
-                menuItemDTO.setHideInMenu(BooleanUtil.toBoolean(sysMenu.getHidden().toString()));
-            }
-            menuItemDTO.setName(sysMenu.getName());
-            menuItemDTO.setIcon(sysMenu.getIcon());
-            menuItemDTO.setId(sysMenu.getId());
-            return menuItemDTO;
-        }).sorted((menu1, menu2) -> menu1.getSortValue() - menu2.getSortValue()).collect(Collectors.toList());
+        return allMenu.stream()
+            .filter(menu -> menu.getParentId().equals(root.getId()) && menu.getType() == MenuEnum.MENU.getCode())
+            .map(sysMenu -> {
+                MenuItemDTO menuItemDTO = new MenuItemDTO();
+                menuItemDTO.setPath(sysMenu.getPath());
+                menuItemDTO.setSortValue(sysMenu.getSortValue());
+                if (ObjectUtil.isNotEmpty(sysMenu.getHidden())) {
+                    menuItemDTO.setHideInMenu(BooleanUtil.toBoolean(sysMenu.getHidden().toString()));
+                }
+                menuItemDTO.setName(sysMenu.getName());
+                menuItemDTO.setIcon(sysMenu.getIcon());
+                menuItemDTO.setId(sysMenu.getId());
+                return menuItemDTO;
+            }).sorted((menu1, menu2) -> menu1.getSortValue() - menu2.getSortValue()).collect(Collectors.toList());
     }
 
     /**

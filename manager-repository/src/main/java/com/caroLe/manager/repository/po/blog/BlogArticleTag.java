@@ -1,13 +1,10 @@
 package com.caroLe.manager.repository.po.blog;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.caroLe.manager.repository.po.BaseBean;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * @author CaroLe

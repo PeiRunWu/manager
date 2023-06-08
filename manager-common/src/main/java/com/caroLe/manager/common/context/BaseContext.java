@@ -18,5 +18,7 @@ public class BaseContext {
 
     public static final String SCOPE = "scope";
 
-    public static final String PATTERN_MANAGER = "^/manager-[a-zA-Z]+";
+    public static final String PATTERN_MANAGER = "^/manager-[^/]+/(.*)";
+
+    public static final String SEPARATOR = "/";
 }

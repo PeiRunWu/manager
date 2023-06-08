@@ -14,6 +14,7 @@
         <module>manager-repository</module>
         <module>manager-auth</module>
         <module>manager-gateway</module>
+        <module>manager-third-party</module>
     </modules>
 
     <properties>

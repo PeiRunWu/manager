@@ -1,7 +1,8 @@
-package com.caroLe.manager.system.service.impl;
+package com.caroLe.manager.thirdPaty.service.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.UUID;
 
 import org.joda.time.DateTime;
@@ -11,11 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import com.caroLe.manager.system.service.OssService;
+import com.caroLe.manager.common.context.BaseContext;
+import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.common.type.SuccessType;
+import com.caroLe.manager.thirdPaty.service.OssService;
 
 /**
  * @author CaroLe
- * @Date 2023/4/20 15:21
+ * @Date 2023/6/8 21:28
  * @Description
  */
 @Service
@@ -40,7 +44,7 @@ public class OssServiceImpl implements OssService {
      * @return 上传地址
      */
     @Override
-    public String upload(MultipartFile file) {
+    public Result<String> upload(MultipartFile file) {
         String fileName = "manager-admin/" + new DateTime().toString("yyyy-MM-dd") + "/"
             + UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
         OSS ossClient = null;
@@ -55,6 +59,32 @@ public class OssServiceImpl implements OssService {
                 ossClient.shutdown();
             }
         }
-        return "https://" + bucketName + "." + endpoint + "/" + fileName;
+        return Result.success("https://" + bucketName + "." + endpoint + "/" + fileName, SuccessType.SUCCESS);
+    }
+
+    /**
+     * 删除文件
+     *
+     * @param fileName 文件名称
+     * @return 成功
+     */
+    @Override
+    public Result<String> deleteOssFile(String fileName) {
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        try {
+            URL url = new URL(fileName);
+            String path = url.getPath();
+            if (path.startsWith(BaseContext.SEPARATOR)) {
+                path = path.substring(1);
+            }
+            ossClient.deleteObject(bucketName, path);
+        } catch (Exception e) {
+            System.out.println("Error Message:" + e.getMessage());
+        } finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
+        }
+        return Result.success(SuccessType.SUCCESS);
     }
 }

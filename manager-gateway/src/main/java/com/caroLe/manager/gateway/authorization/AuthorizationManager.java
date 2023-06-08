@@ -9,6 +9,8 @@ import java.net.URI;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -55,8 +57,11 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
         URI uri = request.getURI();
         PathMatcher pathMatcher = new AntPathMatcher();
-        String patternPath = uri.getPath().replaceAll(PATTERN_MANAGER, "");
-
+        Matcher matcher = Pattern.compile(PATTERN_MANAGER).matcher(uri.getPath());
+        String patternPath = "";
+        if (matcher.find()) {
+            patternPath = "/" + matcher.group(1);
+        }
         // 如果在白名单之内直接放行
         List<String> allowedPatch = allowedPathConfig.getPaths();
         for (String allow : allowedPatch) {
@@ -94,7 +99,9 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             for (String authority : authorities) {
                 String path = stringRedisTemplate.opsForValue().get(ROLE_PATH_PREFIX + authority);
                 List<String> pathList = JSON.parseObject(path, new TypeReference<List<String>>() {});
-                authorityPath.addAll(pathList);
+                if (CollectionUtil.isNotEmpty(pathList)) {
+                    authorityPath.addAll(pathList);
+                }
             }
             if (CollectionUtil.isEmpty(authorityPath)) {
                 return Mono.just(new AuthorizationDecision(false));
