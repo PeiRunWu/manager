@@ -49,7 +49,8 @@
         LEFT JOIN sys_role sr ON r.role_id = sr.id
         <where>
             <if test="commonVO.searchObj !=null and commonVO.searchObj !=''">
-                username=#{commonVO.searchObj}
+                (username LIKE CONCAT('%', #{commonVO.searchObj}, '%') or name LIKE CONCAT('%', #{commonVO.searchObj},
+                '%') or phone LIKE CONCAT('%', #{commonVO.searchObj}, '%'))
             </if>
             <if test="commonVO.createTimeBegin !=null and commonVO.createTimeBegin !=''">
                 AND a.create_time <![CDATA[ >= ]]> #{commonVO.createTimeBegin}

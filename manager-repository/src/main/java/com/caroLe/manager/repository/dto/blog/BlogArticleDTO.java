@@ -1,21 +1,19 @@
-package com.caroLe.manager.repository.po.blog;
+package com.caroLe.manager.repository.dto.blog;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.caroLe.manager.repository.po.BaseBean;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * @author CaroLe
- * @Date 2023/6/5 22:20
+ * @Date 2023/6/13 22:09
  * @Description
  */
 @Data
-@TableName("blog_article")
-@EqualsAndHashCode(callSuper = true)
-public class BlogArticle extends BaseBean {
+public class BlogArticleDTO {
 
     @ApiModelProperty("作者")
     private String author;
@@ -25,6 +23,10 @@ public class BlogArticle extends BaseBean {
 
     @ApiModelProperty("文章内容")
     private String articleContent;
+
+    @ApiModelProperty("文章标签")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<String> articleTag;
 
     @ApiModelProperty("添加封面")
     private String cover;

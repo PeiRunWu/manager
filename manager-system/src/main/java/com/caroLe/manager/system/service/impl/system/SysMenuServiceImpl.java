@@ -199,9 +199,12 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     public Result<String> updateMenuById(SysMenu sysMenu) {
         if (MenuEnum.BUTTON.getCode() == sysMenu.getType()) {
             List<SysRoleMenu> sysRoleMenuList = sysRoleMenuService
-                .list(new LambdaQueryWrapper<SysRoleMenu>().eq(SysRoleMenu::getMenuId, sysMenu.getPath()));
+                .list(new LambdaQueryWrapper<SysRoleMenu>().eq(SysRoleMenu::getMenuId, sysMenu.getId()));
             if (CollectionUtils.isNotEmpty(sysRoleMenuList)) {
-                throw new DataException(ErrorType.BINDING_PERMISSIONS);
+                SysMenu menu = baseMapper.selectById(sysMenu.getId());
+                if (!StrUtil.equals(sysMenu.getPath(), menu.getPath())) {
+                    throw new DataException(ErrorType.BINDING_PERMISSIONS);
+                }
             }
         }
         baseMapper.updateById(sysMenu);

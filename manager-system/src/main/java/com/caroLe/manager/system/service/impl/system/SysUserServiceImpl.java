@@ -74,6 +74,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         String token = authorization.replace("Bearer", "").trim();
         String userId = stringRedisTemplate.opsForValue().get(token);
         SysUser sysUser = baseMapper.selectById(userId);
+        if (ObjectUtil.isEmpty(sysUser)) {
+            throw new UserNameNotFound(ErrorType.LOGIN_AUTH);
+        }
         SysUserDTO sysUserDTO = new SysUserDTO();
         BeanUtils.copyProperties(sysUser, sysUserDTO);
         return Result.success(sysUserDTO, SuccessType.SUCCESS);
