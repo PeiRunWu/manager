@@ -15,6 +15,7 @@
         <module>manager-auth</module>
         <module>manager-gateway</module>
         <module>manager-third-party</module>
+        <module>manager-tm</module>
     </modules>
 
     <properties>
@@ -28,6 +29,7 @@
         <fastjson2.version>2.0.25</fastjson2.version>
         <activation.version>1.1.1</activation.version>
         <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
+        <txlcn-tm.version>5.0.2.RELEASE</txlcn-tm.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <aliyun-sdk-oss.version>3.16.1</aliyun-sdk-oss.version>
@@ -158,6 +160,25 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- txlcn 分布式事务 -->
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tm</artifactId>
+                <version>${txlcn-tm.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tc</artifactId>
+                <version>${txlcn-tm.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-txmsg-netty</artifactId>
+                <version>${txlcn-tm.version}</version>
             </dependency>
 
             <dependency>
