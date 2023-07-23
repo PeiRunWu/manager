@@ -40,6 +40,12 @@ public class ErrorType extends StatusType {
 
     public static final ErrorType BINDING_PERMISSIONS = new ErrorType(222, "该资源路径已绑定权限,不可以修改");
 
+    public static final ErrorType WECHAT_NOT_REGISTERED = new ErrorType(223, "该微信无法注册");
+
+    public static final ErrorType REMOTE_CALL_FAILED = new ErrorType(224, "远程调用失败");
+
+    public static final ErrorType GET_USERID_ERROR = new ErrorType(225, "获取UserId错误");
+
     public ErrorType(Integer code, String message) {
         super(code, message);
     }

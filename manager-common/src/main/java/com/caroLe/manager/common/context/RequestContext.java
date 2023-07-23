@@ -16,4 +16,6 @@ public class RequestContext {
     public static final String TOKEN_TYPE = "token_type";
 
     public static final String JWT_URL = "http://localhost:9000/manager-auth/rsa/publicKey";
+    
+    public static final String AUTHORIZATION_CODE = "authorization_code";
 }

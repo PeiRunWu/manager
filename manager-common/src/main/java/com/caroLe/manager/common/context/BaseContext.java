@@ -21,4 +21,9 @@ public class BaseContext {
     public static final String PATTERN_MANAGER = "^/manager-[^/]+/(.*)";
 
     public static final String SEPARATOR = "/";
+
+    public static final String ACCESS_TOKEN = "access_token";
+    
+    public static final String CLIENT_CREDENTIAL = "client_credential";
+
 }

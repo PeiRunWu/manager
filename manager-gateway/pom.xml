@@ -8,7 +8,6 @@
         <artifactId>manager</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <artifactId>manager-gateway</artifactId>
 
     <properties>
@@ -34,6 +33,12 @@
                     <artifactId>mybatis-plus-boot-starter</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- hutool -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
         </dependency>
 
         <!--nacos发现-->
