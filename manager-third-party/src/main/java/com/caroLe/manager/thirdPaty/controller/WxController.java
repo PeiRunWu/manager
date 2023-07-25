@@ -1,5 +1,7 @@
 package com.caroLe.manager.thirdPaty.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import com.caroLe.manager.thirdPaty.service.WxService;
  * @Description
  */
 @RestController
+@Api(tags = "微信小程序")
 @RequestMapping("/wx")
 public class WxController {
 
@@ -22,11 +25,13 @@ public class WxController {
     private WxService wxService;
 
     @GetMapping("/getOpenId")
+    @ApiOperation(value = "获取永久授权Id")
     public Result<String> getOpenId(@RequestParam String code) {
         return wxService.getOpenId(code);
     }
 
     @GetMapping("/getAccessToken")
+    @ApiOperation(value = "获取token")
     public Result<String> getAccessToken() {
         return wxService.getAccessToken();
     }

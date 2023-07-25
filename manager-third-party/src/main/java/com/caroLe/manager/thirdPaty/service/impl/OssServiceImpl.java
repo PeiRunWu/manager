@@ -5,6 +5,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.UUID;
 
+import cn.hutool.core.util.IdUtil;
+import com.caroLe.manager.common.exception.DataException;
+import com.caroLe.manager.common.type.ErrorType;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,6 +26,7 @@ import com.caroLe.manager.thirdPaty.service.OssService;
  * @Date 2023/6/8 21:28
  * @Description
  */
+@Slf4j
 @Service
 public class OssServiceImpl implements OssService {
 
@@ -45,15 +50,16 @@ public class OssServiceImpl implements OssService {
      */
     @Override
     public Result<String> upload(MultipartFile file) {
-        String fileName = "manager-admin/" + new DateTime().toString("yyyy-MM-dd") + "/"
-            + UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
+        String fileName = "manager-admin/" + new DateTime().toString("yyyy-MM-dd") + "/" + IdUtil.simpleUUID()
+            + file.getOriginalFilename();
         OSS ossClient = null;
         try {
             InputStream inputStream = file.getInputStream();
             ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
             ossClient.putObject(bucketName, fileName, inputStream);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("文件上传失败", e);
+            throw new DataException(ErrorType.FILE_UPLOAD_FAILED);
         } finally {
             if (ossClient != null) {
                 ossClient.shutdown();
@@ -79,7 +85,8 @@ public class OssServiceImpl implements OssService {
             }
             ossClient.deleteObject(bucketName, path);
         } catch (Exception e) {
-            System.out.println("Error Message:" + e.getMessage());
+            log.error("文件删除失败", e);
+            throw new DataException(ErrorType.FILE_DELETE_FAILED);
         } finally {
             if (ossClient != null) {
                 ossClient.shutdown();

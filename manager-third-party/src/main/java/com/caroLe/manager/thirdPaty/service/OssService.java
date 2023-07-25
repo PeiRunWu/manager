@@ -11,7 +11,7 @@ import com.caroLe.manager.common.result.Result;
  */
 public interface OssService {
     /**
-     * 上传文件
+     * 上传文件到阿里云oss
      *
      * @param file 文件信息
      * @return 上传地址
@@ -19,7 +19,7 @@ public interface OssService {
     Result<String> upload(MultipartFile file);
 
     /**
-     * 删除文件
+     * 删除文件阿里云oss
      *
      * @param fileName 文件名称
      * @return 成功

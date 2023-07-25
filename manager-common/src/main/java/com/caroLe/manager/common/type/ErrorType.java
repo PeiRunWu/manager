@@ -46,6 +46,12 @@ public class ErrorType extends StatusType {
 
     public static final ErrorType GET_USERID_ERROR = new ErrorType(225, "获取UserId错误");
 
+    public static final ErrorType FILE_UPLOAD_FAILED = new ErrorType(226, "文件上传失败");
+
+    public static final ErrorType FILE_DELETE_FAILED = new ErrorType(227, "文件删除失败");
+
+    public static final ErrorType IMAGE_CONTENT_ILLEGAL = new ErrorType(228, "图片内容不合规");
+
     public ErrorType(Integer code, String message) {
         super(code, message);
     }
