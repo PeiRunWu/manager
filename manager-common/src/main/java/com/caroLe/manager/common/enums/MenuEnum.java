@@ -1,13 +1,14 @@
 package com.caroLe.manager.common.enums;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author CaroLe
  * @Date 2023/5/3 13:09
  * @Description
  */
-
+@Getter
 @AllArgsConstructor
 public enum MenuEnum {
     /**
@@ -26,12 +27,4 @@ public enum MenuEnum {
     private final int code;
 
     private final String desc;
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public int getCode() {
-        return code;
-    }
 }

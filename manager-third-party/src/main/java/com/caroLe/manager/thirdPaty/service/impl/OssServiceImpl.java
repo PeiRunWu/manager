@@ -3,12 +3,7 @@ package com.caroLe.manager.thirdPaty.service.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.UUID;
 
-import cn.hutool.core.util.IdUtil;
-import com.caroLe.manager.common.exception.DataException;
-import com.caroLe.manager.common.type.ErrorType;
-import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,9 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.caroLe.manager.common.context.BaseContext;
+import com.caroLe.manager.common.exception.DataException;
 import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.common.type.ErrorType;
 import com.caroLe.manager.common.type.SuccessType;
 import com.caroLe.manager.thirdPaty.service.OssService;
+
+import cn.hutool.core.util.IdUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author CaroLe

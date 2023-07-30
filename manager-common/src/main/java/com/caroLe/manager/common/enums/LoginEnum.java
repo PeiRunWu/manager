@@ -1,13 +1,14 @@
 package com.caroLe.manager.common.enums;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author CaroLe
  * @Date 2023/4/25 22:25
  * @Description
  */
-
+@Getter
 @AllArgsConstructor
 public enum LoginEnum {
 
@@ -23,12 +24,4 @@ public enum LoginEnum {
     private final Integer code;
 
     private final String desc;
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
 }

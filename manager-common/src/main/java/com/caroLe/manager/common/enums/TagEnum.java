@@ -1,12 +1,14 @@
 package com.caroLe.manager.common.enums;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author CaroLe
  * @Date 2023/5/28 21:35
  * @Description
  */
+@Getter
 @AllArgsConstructor
 public enum TagEnum {
     /**
@@ -21,12 +23,4 @@ public enum TagEnum {
     private final Integer code;
 
     private final String desc;
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
 }
