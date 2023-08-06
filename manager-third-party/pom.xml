@@ -82,10 +82,10 @@
             <artifactId>joda-time</artifactId>
         </dependency>
 
-        <!--hutool-->
+        <!-- 腾讯云 -->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
         </dependency>
 
     </dependencies>

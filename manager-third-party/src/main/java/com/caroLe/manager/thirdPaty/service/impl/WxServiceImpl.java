@@ -14,6 +14,7 @@ import com.caroLe.manager.common.type.ErrorType;
 import com.caroLe.manager.common.type.SuccessType;
 import com.caroLe.manager.thirdPaty.service.WxService;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -49,7 +50,7 @@ public class WxServiceImpl implements WxService {
         String response = HttpUtil.get(url, map);
         JSONObject json = JSONUtil.parseObj(response);
         String openId = json.getStr("openid");
-        if (openId == null || openId.length() == 0) {
+        if (StrUtil.isEmpty(openId)) {
             throw new DataException(ErrorType.AUTHENTICATION_FAILED);
         }
         return Result.success(openId, SuccessType.SUCCESS);

@@ -32,4 +32,12 @@ public interface TbDriverDao extends BaseMapper<TbDriver> {
      */
     void registerNewDriver(@Param("openId") String openId, @Param("nickname") String nickname,
         @Param("photo") String photo);
+
+    /**
+     * 更新archive
+     * 
+     * @param driverId 司机Id
+     * @return 条数
+     */
+    Integer updateDriverArchive(Long driverId);
 }

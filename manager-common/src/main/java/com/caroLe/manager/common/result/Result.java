@@ -2,7 +2,6 @@ package com.caroLe.manager.common.result;
 
 import com.caroLe.manager.common.type.StatusType;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -13,11 +12,9 @@ import lombok.Data;
 @Data
 public class Result<T> {
 
-    @ApiModelProperty(value = "返回数据")
     private T data;
-    @ApiModelProperty(value = "返回信息")
     private String message;
-    @ApiModelProperty(value = "结果code")
+
     private Integer code;
 
     public Result() {}

@@ -6,8 +6,10 @@ import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.caroLe.manager.common.annotation.Sensitive;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import cn.hutool.core.util.DesensitizedUtil;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -31,6 +33,7 @@ public class TbDriver implements Serializable {
     @ApiModelProperty("昵称")
     private String nickname;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.CHINESE_NAME)
     @ApiModelProperty("姓名")
     private String name;
 
@@ -40,29 +43,35 @@ public class TbDriver implements Serializable {
     @ApiModelProperty("头像")
     private String photo;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.ID_CARD)
     @ApiModelProperty("身份证号码")
     private String pid;
 
     @ApiModelProperty("生日")
     private String birthday;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.MOBILE_PHONE)
     @ApiModelProperty("电话")
     private String tel;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.EMAIL)
     @ApiModelProperty("邮箱")
     private String email;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.ADDRESS)
     @ApiModelProperty("收信地址")
     private String mailAddress;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.ID_CARD)
     @ApiModelProperty("应急联系人")
     private String contactName;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.MOBILE_PHONE)
     @ApiModelProperty("应急联系人电话")
     private String contactTel;
 
     @ApiModelProperty("1未认证，2已认证")
-    private Byte realAuth;
+    private Integer realAuth;
 
     @ApiModelProperty("身份证地址")
     private String idcardAddress;
@@ -97,6 +106,7 @@ public class TbDriver implements Serializable {
     @ApiModelProperty("手持驾驶证")
     private String drcardHolding;
 
+    @Sensitive(type = DesensitizedUtil.DesensitizedType.ADDRESS)
     @ApiModelProperty("家庭地址，包含地址和定位，用于回家导航")
     private String home;
 
@@ -107,11 +117,10 @@ public class TbDriver implements Serializable {
     private Boolean archive;
 
     @ApiModelProperty("状态，1正常，2禁用，3.降低接单量")
-    private Byte status;
+    private Integer status;
 
     @ApiModelProperty("创建时间")
     @TableField(fill = FieldFill.INSERT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
-
 }

@@ -24,7 +24,7 @@ public class GlobalExceptionHandle {
 
     @ExceptionHandler(Exception.class)
     public Result<String> exceptionHandle(Exception exception) {
-        exception.printStackTrace();
+        log.error("Exception 错误:", exception);
         return Result.failed(ErrorType.SERVICE_ERROR);
     }
 }
