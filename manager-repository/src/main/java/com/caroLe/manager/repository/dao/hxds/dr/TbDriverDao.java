@@ -39,5 +39,13 @@ public interface TbDriverDao extends BaseMapper<TbDriver> {
      * @param driverId 司机Id
      * @return 条数
      */
-    Integer updateDriverArchive(Long driverId);
+    Integer updateDriverArchive(@Param("driverId") Long driverId);
+
+    /**
+     * 登入
+     * 
+     * @param openId 微信小程序code
+     * @return map
+     */
+    Map<String, Object> login(@Param("openId") String openId);
 }

@@ -2,6 +2,7 @@ package com.caroLe.manager.repository.vo.system;
 
 import java.util.List;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -12,7 +13,9 @@ import lombok.Data;
 @Data
 public class AssignMenuVO {
 
+    @ApiModelProperty("角色Id")
     private String roleId;
 
+    @ApiModelProperty("菜单IdList")
     private List<String> menuIdList;
 }

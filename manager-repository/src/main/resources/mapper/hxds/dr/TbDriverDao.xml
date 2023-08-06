@@ -25,5 +25,14 @@
         </if>
     </select>
 
+    <select id="login" resultType="java.util.Map">
+        SELECT id,
+               real_auth AS realAuth,
+               archive,
+               tel
+        FROM tb_driver
+        WHERE `status` != 2 AND open_id = #{openId}
+    </select>
+
 
 </mapper>
