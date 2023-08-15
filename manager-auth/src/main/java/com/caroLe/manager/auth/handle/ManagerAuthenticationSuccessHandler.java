@@ -1,18 +1,9 @@
 package com.caroLe.manager.auth.handle;
 
-import static com.caroLe.manager.common.context.BaseContext.*;
-import static com.caroLe.manager.common.context.RequestContext.ACCESS_TOKEN;
-import static com.caroLe.manager.common.context.RequestContext.TOKEN_TYPE;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.caroLe.manager.auth.domain.SecurityUser;
+import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.common.type.SuccessType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.MediaType;
@@ -26,10 +17,17 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.caroLe.manager.auth.domain.SecurityUser;
-import com.caroLe.manager.common.result.Result;
-import com.caroLe.manager.common.type.SuccessType;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static com.caroLe.manager.common.context.BaseContext.*;
+import static com.caroLe.manager.common.context.RequestContext.ACCESS_TOKEN;
+import static com.caroLe.manager.common.context.RequestContext.TOKEN_TYPE;
 
 /**
  * @author CaroLe

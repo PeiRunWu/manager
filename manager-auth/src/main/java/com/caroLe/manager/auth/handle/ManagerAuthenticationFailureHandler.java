@@ -1,20 +1,17 @@
 package com.caroLe.manager.auth.handle;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.common.type.ErrorType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.caroLe.manager.common.result.Result;
-import com.caroLe.manager.common.type.ErrorType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.extern.slf4j.Slf4j;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author CaroLe

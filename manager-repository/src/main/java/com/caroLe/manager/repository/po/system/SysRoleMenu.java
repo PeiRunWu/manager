@@ -2,7 +2,6 @@ package com.caroLe.manager.repository.po.system;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.caroLe.manager.repository.po.BaseBean;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

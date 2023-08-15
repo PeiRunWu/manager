@@ -1,7 +1,8 @@
 package com.caroLe.manager.gateway.config;
 
-import static com.caroLe.manager.common.context.RequestContext.JWT_URL;
-
+import com.caroLe.manager.gateway.authorization.AuthorizationManager;
+import com.caroLe.manager.gateway.handler.ManagerAccessDeniedHandler;
+import com.caroLe.manager.gateway.handler.ManagerAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,9 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-
-import com.caroLe.manager.gateway.authorization.AuthorizationManager;
-import com.caroLe.manager.gateway.handler.ManagerAccessDeniedHandler;
-import com.caroLe.manager.gateway.handler.ManagerAuthenticationEntryPoint;
-
 import reactor.core.publisher.Mono;
+
+import static com.caroLe.manager.common.context.RequestContext.JWT_URL;
 
 /**
  * @author CaroLe

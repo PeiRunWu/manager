@@ -1,8 +1,8 @@
 package com.caroLe.manager.repository.vo.hxds.dr;
 
-import javax.validation.constraints.NotEmpty;
-
 import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author CaroLe

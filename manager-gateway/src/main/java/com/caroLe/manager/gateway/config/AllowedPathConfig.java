@@ -1,11 +1,10 @@
 package com.caroLe.manager.gateway.config;
 
-import java.util.List;
-
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import lombok.Data;
+import java.util.List;
 
 /**
  * @author CaroLe

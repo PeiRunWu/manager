@@ -1,14 +1,13 @@
 package com.caroLe.manager.repository.po.system;
 
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.caroLe.manager.repository.po.BaseBean;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.time.LocalDateTime;
 
 /**
  * @author CaroLe

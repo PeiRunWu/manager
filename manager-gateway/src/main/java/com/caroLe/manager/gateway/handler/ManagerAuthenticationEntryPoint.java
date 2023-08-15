@@ -1,7 +1,9 @@
 package com.caroLe.manager.gateway.handler;
 
-import java.nio.charset.Charset;
-
+import com.alibaba.fastjson.JSONObject;
+import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.common.type.ErrorType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,13 +12,9 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.web.server.ServerWebExchange;
-
-import com.alibaba.fastjson2.JSON;
-import com.caroLe.manager.common.result.Result;
-import com.caroLe.manager.common.type.ErrorType;
-
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author CaroLe
@@ -32,8 +30,8 @@ public class ManagerAuthenticationEntryPoint implements ServerAuthenticationEntr
         response.getHeaders().set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         response.getHeaders().set("Access-Control-Allow-Origin", "*");
         response.getHeaders().set("Cache-Control", "no-cache");
-        String body = JSON.toJSONString(Result.failed(ErrorType.LOGIN_AUTH));
-        DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(Charset.forName("UTF-8")));
+        String body = JSONObject.toJSONString(Result.failed(ErrorType.LOGIN_AUTH));
+        DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
         return response.writeWith(Mono.just(buffer));
     }
 }

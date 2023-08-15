@@ -1,18 +1,7 @@
 package com.caroLe.manager.system.service.impl.system;
 
-import java.util.List;
-import java.util.Objects;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.crypto.digest.BCrypt;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -36,9 +25,17 @@ import com.caroLe.manager.repository.vo.system.SysUserVO;
 import com.caroLe.manager.system.service.system.SysRoleService;
 import com.caroLe.manager.system.service.system.SysUserRoleService;
 import com.caroLe.manager.system.service.system.SysUserService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.crypto.digest.BCrypt;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author CaroLe

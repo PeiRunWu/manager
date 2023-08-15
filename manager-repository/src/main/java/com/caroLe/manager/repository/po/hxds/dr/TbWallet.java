@@ -1,12 +1,11 @@
 package com.caroLe.manager.repository.po.hxds.dr;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * @author CaroLe

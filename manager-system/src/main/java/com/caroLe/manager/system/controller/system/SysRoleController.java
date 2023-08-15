@@ -1,11 +1,5 @@
 package com.caroLe.manager.system.controller.system;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.caroLe.manager.common.result.Result;
 import com.caroLe.manager.repository.dto.system.SysRoleDTO;
@@ -14,9 +8,13 @@ import com.caroLe.manager.repository.vo.system.AssignRoleVO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.repository.vo.system.SysRoleVO;
 import com.caroLe.manager.system.service.system.SysRoleService;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author CaroLe

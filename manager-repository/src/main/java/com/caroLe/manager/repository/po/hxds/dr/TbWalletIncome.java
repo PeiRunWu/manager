@@ -1,16 +1,15 @@
 package com.caroLe.manager.repository.po.hxds.dr;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * @author CaroLe

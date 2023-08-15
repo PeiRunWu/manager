@@ -1,20 +1,19 @@
 package com.caroLe.manager.auth.serivce;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.caroLe.manager.auth.domain.SecurityUser;
 import com.caroLe.manager.auth.feign.ManagerSystemService;
 import com.caroLe.manager.common.result.Result;
 import com.caroLe.manager.common.type.SuccessType;
 import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author CaroLe

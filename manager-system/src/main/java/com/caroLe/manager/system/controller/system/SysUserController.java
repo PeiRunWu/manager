@@ -1,8 +1,5 @@
 package com.caroLe.manager.system.controller.system;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.caroLe.manager.common.result.Result;
 import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
@@ -10,9 +7,10 @@ import com.caroLe.manager.repository.dto.system.SysUserDTO;
 import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.repository.vo.system.SysUserVO;
 import com.caroLe.manager.system.service.system.SysUserService;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author CaroLe

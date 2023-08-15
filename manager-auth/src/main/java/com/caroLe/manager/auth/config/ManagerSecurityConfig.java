@@ -1,5 +1,10 @@
 package com.caroLe.manager.auth.config;
 
+import com.caroLe.manager.auth.filter.ManagerAuthenticationFilter;
+import com.caroLe.manager.auth.handle.ManagerAuthenticationFailureHandler;
+import com.caroLe.manager.auth.handle.ManagerAuthenticationSuccessHandler;
+import com.caroLe.manager.auth.handle.ManagerLogoutSuccessHandler;
+import com.caroLe.manager.auth.serivce.SecurityAuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +22,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-
-import com.caroLe.manager.auth.filter.ManagerAuthenticationFilter;
-import com.caroLe.manager.auth.handle.ManagerAuthenticationFailureHandler;
-import com.caroLe.manager.auth.handle.ManagerAuthenticationSuccessHandler;
-import com.caroLe.manager.auth.handle.ManagerLogoutSuccessHandler;
-import com.caroLe.manager.auth.serivce.SecurityAuthServiceImpl;
 
 /**
  * @author CaroLe

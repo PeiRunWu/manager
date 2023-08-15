@@ -1,9 +1,9 @@
 package com.caroLe.manager.repository.vo.system;
 
-import java.util.List;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author CaroLe

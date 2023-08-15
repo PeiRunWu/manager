@@ -1,17 +1,13 @@
 package com.caroLe.manager.gateway.authorization;
 
-import static com.caroLe.manager.common.context.BaseContext.PATTERN_MANAGER;
-import static com.caroLe.manager.common.context.RedisContext.ROLE_PATH_PREFIX;
-import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
-import static com.caroLe.manager.common.context.RequestContext.BEARER;
-
-import java.net.URI;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.caroLe.manager.gateway.config.AllowedPathConfig;
+import com.caroLe.manager.repository.dto.system.UserDTO;
+import com.nimbusds.jose.JWSObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpMethod;
@@ -25,17 +21,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.PathMatcher;
-
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.TypeReference;
-import com.caroLe.manager.gateway.config.AllowedPathConfig;
-import com.caroLe.manager.repository.dto.system.UserDTO;
-import com.nimbusds.jose.JWSObject;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+
+import java.net.URI;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.caroLe.manager.common.context.BaseContext.PATTERN_MANAGER;
+import static com.caroLe.manager.common.context.RedisContext.ROLE_PATH_PREFIX;
+import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
+import static com.caroLe.manager.common.context.RequestContext.BEARER;
 
 /**
  * @author CaroLe
@@ -88,7 +86,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             }
             JWSObject jwsObject = JWSObject.parse(realToken);
             String userStr = jwsObject.getPayload().toString();
-            UserDTO userDTO = JSON.parseObject(userStr, UserDTO.class);
+            UserDTO userDTO = JSONObject.parseObject(userStr, UserDTO.class);
             List<String> authorities = userDTO.getAuthorities();
 
             if (CollectionUtils.isEmpty(authorities)) {
@@ -98,7 +96,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             List<String> authorityPath = new ArrayList<>();
             for (String authority : authorities) {
                 String path = stringRedisTemplate.opsForValue().get(ROLE_PATH_PREFIX + authority);
-                List<String> pathList = JSON.parseObject(path, new TypeReference<List<String>>() {});
+                List<String> pathList = JSONObject.parseObject(path, new TypeReference<List<String>>() {});
                 if (CollectionUtil.isNotEmpty(pathList)) {
                     authorityPath.addAll(pathList);
                 }

@@ -1,11 +1,11 @@
 package com.caroLe.manager.repository.vo.hxds.dr;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 /**
  * @author CaroLe

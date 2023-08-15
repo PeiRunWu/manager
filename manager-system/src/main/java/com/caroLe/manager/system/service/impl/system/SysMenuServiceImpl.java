@@ -1,26 +1,9 @@
 package com.caroLe.manager.system.service.impl.system;
 
-import static com.caroLe.manager.common.context.BaseContext.EMPTY_STRING;
-import static com.caroLe.manager.common.context.BaseContext.ZERO;
-import static com.caroLe.manager.common.context.RedisContext.ROLE_PATH_PREFIX;
-import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
-import static com.caroLe.manager.common.context.RequestContext.BEARER;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import com.alibaba.fastjson2.JSON;
+import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -46,10 +29,24 @@ import com.caroLe.manager.system.service.system.SysMenuService;
 import com.caroLe.manager.system.service.system.SysRoleMenuService;
 import com.caroLe.manager.system.service.system.SysRoleService;
 import com.caroLe.manager.system.service.system.SysUserRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static com.caroLe.manager.common.context.BaseContext.EMPTY_STRING;
+import static com.caroLe.manager.common.context.BaseContext.ZERO;
+import static com.caroLe.manager.common.context.RedisContext.ROLE_PATH_PREFIX;
+import static com.caroLe.manager.common.context.RequestContext.AUTHORIZATION;
+import static com.caroLe.manager.common.context.RequestContext.BEARER;
 
 /**
  * @author CaroLe
@@ -239,7 +236,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
             }
         }
         // redis 直接保存角色对应的path
-        stringRedisTemplate.opsForValue().set(ROLE_PATH_PREFIX + sysRole.getRoleCode(), JSON.toJSONString(pathList));
+        stringRedisTemplate.opsForValue().set(ROLE_PATH_PREFIX + sysRole.getRoleCode(), JSONObject.toJSONString(pathList));
     }
 
     /**

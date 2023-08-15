@@ -1,18 +1,16 @@
 package com.caroLe.manager.auth.controller;
 
-import java.security.KeyPair;
-import java.security.interfaces.RSAPublicKey;
-import java.util.Map;
-
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nimbusds.jose.jwk.JWKSet;
-import com.nimbusds.jose.jwk.RSAKey;
-
-import lombok.extern.slf4j.Slf4j;
+import java.security.KeyPair;
+import java.security.interfaces.RSAPublicKey;
+import java.util.Map;
 
 /**
  * @author CaroLe

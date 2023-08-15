@@ -1,9 +1,8 @@
 package com.caroLe.manager.repository.dao.hxds.dr;
 
-import org.mapstruct.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.caroLe.manager.repository.po.hxds.dr.TbWallet;
+import org.mapstruct.Mapper;
 
 /**
  * @author CaroLe

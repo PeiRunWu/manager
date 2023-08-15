@@ -1,7 +1,6 @@
 package com.caroLe.manager.common.result;
 
 import com.caroLe.manager.common.type.StatusType;
-
 import lombok.Data;
 
 /**

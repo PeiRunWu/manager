@@ -1,9 +1,9 @@
 package com.caroLe.manager.repository.dto.system;
 
-import java.util.List;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author CaroLe

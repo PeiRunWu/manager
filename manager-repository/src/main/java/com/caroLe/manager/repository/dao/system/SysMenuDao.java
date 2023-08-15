@@ -1,9 +1,8 @@
 package com.caroLe.manager.repository.dao.system;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.caroLe.manager.repository.po.system.SysMenu;
+import org.apache.ibatis.annotations.Mapper;
 
 
 

@@ -1,15 +1,14 @@
 package com.caroLe.manager.repository.dao.system;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
 import com.caroLe.manager.repository.dto.system.SysUserDTO;
 import com.caroLe.manager.repository.po.system.SysUser;
 import com.caroLe.manager.repository.vo.system.CommonVO;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author CaroLe

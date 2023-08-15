@@ -1,11 +1,10 @@
 package com.caroLe.manager.auth.feign;
 
+import com.caroLe.manager.common.result.Result;
+import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.caroLe.manager.common.result.Result;
-import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
 
 /**
  * @author CaroLe

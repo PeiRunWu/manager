@@ -1,10 +1,6 @@
 package com.caroLe.manager.auth.config;
 
-import java.security.KeyPair;
-import java.util.List;
-
-import javax.sql.DataSource;
-
+import com.caroLe.manager.auth.serivce.SecurityAuthServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +21,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
-import com.caroLe.manager.auth.serivce.SecurityAuthServiceImpl;
+import javax.sql.DataSource;
+import java.security.KeyPair;
+import java.util.List;
 
 /**
  * @author CaroLe

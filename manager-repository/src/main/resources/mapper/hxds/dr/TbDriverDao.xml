@@ -4,7 +4,13 @@
 
     <insert id="registerNewDriver" keyColumn="id" keyProperty="id">
         INSERT INTO tb_driver
-        SET open_id = #{openId}, nickname = #{nickname}, photo = #{photo}, real_auth = 1, summary = '{"level":0,"totalOrder":0,"weekOrder":0,"weekComment":0,"appeal":0}', archive = false, `status` = 1
+        SET open_id   = #{openId},
+            nickname  = #{nickname},
+            photo     = #{photo},
+            real_auth = 1,
+            summary   = '{"level":0,"totalOrder":0,"weekOrder":0,"weekComment":0,"appeal":0}',
+            archive   = false,
+            `status`  = 1
     </insert>
 
     <update id="updateDriverArchive">
@@ -31,7 +37,27 @@
                archive,
                tel
         FROM tb_driver
-        WHERE `status` != 2 AND open_id = #{openId}
+        WHERE `status` != 2
+          AND open_id = #{openId}
+    </select>
+
+    <select id="searchDriverBaseInfo" resultType="java.util.Map">
+        SELECT d.open_id               AS openId,
+               d.`name`,
+               d.nickname,
+               d.sex,
+               d.photo,
+               d.tel,
+               d.email,
+               d.pid,
+               d.real_auth             AS realAuth,
+               d.summary,
+               d.`status`,
+               CAST(w.balance AS CHAR) AS balance,
+               d.create_time           AS createTime
+        FROM tb_driver d
+                 JOIN tb_wallet w ON d.id = w.driver_id
+        WHERE d.id = #{driverId};
     </select>
 
 

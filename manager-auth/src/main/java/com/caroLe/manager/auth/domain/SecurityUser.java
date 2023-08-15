@@ -1,19 +1,17 @@
 package com.caroLe.manager.auth.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import cn.hutool.core.util.StrUtil;
+import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.caroLe.manager.repository.dto.system.SysMenuSecurityDTO;
-
-import cn.hutool.core.util.StrUtil;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author CaroLe

@@ -1,8 +1,8 @@
 package com.caroLe.manager.thirdPaty.service;
 
-import java.util.Map;
-
 import com.caroLe.manager.common.result.Result;
+
+import java.util.Map;
 
 /**
  * @author CaroLe

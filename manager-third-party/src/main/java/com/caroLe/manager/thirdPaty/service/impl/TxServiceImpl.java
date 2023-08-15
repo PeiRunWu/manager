@@ -1,10 +1,5 @@
 package com.caroLe.manager.thirdPaty.service.impl;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import com.caroLe.manager.common.exception.DataException;
 import com.caroLe.manager.common.result.Result;
 import com.caroLe.manager.common.type.ErrorType;
@@ -15,6 +10,10 @@ import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.iai.v20200303.IaiClient;
 import com.tencentcloudapi.iai.v20200303.models.CreatePersonRequest;
 import com.tencentcloudapi.iai.v20200303.models.CreatePersonResponse;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * @author CaroLe

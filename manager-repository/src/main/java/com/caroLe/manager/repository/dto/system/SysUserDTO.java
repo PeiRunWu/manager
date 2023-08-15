@@ -1,12 +1,11 @@
 package com.caroLe.manager.repository.dto.system;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author CaroLe

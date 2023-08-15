@@ -1,9 +1,8 @@
 package com.caroLe.manager.repository.dao.blog;
 
-import org.mapstruct.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.caroLe.manager.repository.po.blog.BlogArticleTag;
+import org.mapstruct.Mapper;
 
 /**
  * @author CaroLe

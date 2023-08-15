@@ -1,11 +1,11 @@
 package com.caroLe.manager.common.utils;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author CaroLe

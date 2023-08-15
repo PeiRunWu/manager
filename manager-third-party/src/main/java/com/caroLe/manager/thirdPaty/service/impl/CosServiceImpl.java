@@ -1,13 +1,8 @@
 package com.caroLe.manager.thirdPaty.service.impl;
 
-import java.io.InputStream;
-import java.net.URL;
-
-import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.caroLe.manager.common.context.BaseContext;
 import com.caroLe.manager.common.enums.ImageTypeEnum;
 import com.caroLe.manager.common.exception.DataException;
@@ -26,11 +21,14 @@ import com.qcloud.cos.model.StorageClass;
 import com.qcloud.cos.model.ciModel.auditing.ImageAuditingRequest;
 import com.qcloud.cos.model.ciModel.auditing.ImageAuditingResponse;
 import com.qcloud.cos.region.Region;
-
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * @author CaroLe

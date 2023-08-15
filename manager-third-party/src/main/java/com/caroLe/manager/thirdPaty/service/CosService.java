@@ -1,8 +1,7 @@
 package com.caroLe.manager.thirdPaty.service;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.caroLe.manager.common.result.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author CaroLe

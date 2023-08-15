@@ -1,16 +1,6 @@
 package com.caroLe.manager.system.service.impl.system;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,8 +19,16 @@ import com.caroLe.manager.repository.vo.system.CommonVO;
 import com.caroLe.manager.repository.vo.system.SysRoleVO;
 import com.caroLe.manager.system.service.system.SysRoleService;
 import com.caroLe.manager.system.service.system.SysUserRoleService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import cn.hutool.core.util.ObjectUtil;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author CaroLe

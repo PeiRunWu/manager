@@ -1,12 +1,11 @@
 package com.caroLe.manager.repository.po.hxds.dr;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author CaroLe

@@ -1,9 +1,9 @@
 package com.caroLe.manager.repository.vo.hxds.dr;
 
-import javax.validation.constraints.NotBlank;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author CaroLe

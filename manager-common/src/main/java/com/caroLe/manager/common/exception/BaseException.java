@@ -1,7 +1,6 @@
 package com.caroLe.manager.common.exception;
 
 import com.caroLe.manager.common.type.StatusType;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,15 +1,14 @@
 package com.caroLe.manager.auth.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.caroLe.manager.auth.domain.SecurityUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
-import com.caroLe.manager.auth.domain.SecurityUser;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author CaroLe
